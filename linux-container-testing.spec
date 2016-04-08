@@ -5,17 +5,17 @@
 #
 
 Name:           linux-container-testing
-Version:        4.2.5
+Version:        4.5
 Release:        1
 License:        GPL-2.0
 Summary:        The Linux kernel optimized for running inside a container
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.2.5.tar.xz
+Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.5.tar.xz
 Source1:        config
 Source2:        cmdline
 
-%define kversion %{version}-%{release}.container
+%define kversion %{version}-%{release}.container.testing
 
 BuildRequires:  bash >= 2.03
 BuildRequires:  bc
@@ -25,6 +25,7 @@ BuildRequires:  elfutils
 BuildRequires:  elfutils-devel
 BuildRequires:  make >= 3.78
 BuildRequires:  openssl
+BuildRequires:  openssl-dev
 BuildRequires:  flex
 BuildRequires:  bison
 
@@ -49,21 +50,14 @@ patch12: 0012-No-wait-for-the-known-devices.patch
 patch13: 0013-Turn-mmput-into-an-async-function.patch
 Patch14: 0014-ptdamage.patch
 
-# Security
-Patch21: CVE-2015-6937.patch
-Patch22: cve-2016-0728.patch
-
 # plkvm patches
 Patch401: 401-plkvm.patch
 Patch403: 403-rdrand.patch
 Patch404: 404-reboot.patch
 Patch405: 405-no-early-modprobe.patch
-Patch406: 406-initcalldebug.patch
+#Patch406: 406-initcalldebug.patch
 Patch407: 407-pci-guest-kernel-set-pci-net-class-bar-to-3.patch
 Patch408: 408-restart-info-log.patch
-
-# kdbus
-Patch701: 701-kdbus.patch
 
 %description
 The Linux kernel.
@@ -77,9 +71,9 @@ Group:          kernel
 Linux kernel extra file
 
 %prep
-%setup -q -n linux-4.2.5
+%setup -q -n linux-4.5
 
-%patch1 -p1
+#%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -94,18 +88,14 @@ Linux kernel extra file
 %patch13 -p1
 %patch14 -p1
 
-%patch21 -p1
-%patch22 -p1
-
 %patch401 -p1
 %patch403 -p1
 %patch404 -p1
 %patch405 -p1
-%patch406 -p1
+#%patch406 -p1
 %patch407 -p1
 %patch408 -p1
 
-%patch701 -p1
 
 cp %{SOURCE1} .
 
@@ -161,9 +151,9 @@ rm -rf %{buildroot}/usr/lib/firmware
 %dir /usr/lib/kernel
 /usr/lib/kernel/config-%{kversion}
 /usr/lib/kernel/vmlinuz-%{kversion}
-/usr/lib/kernel/vmlinuz.container
+%exclude /usr/lib/kernel/vmlinuz.container
 /usr/lib/kernel/vmlinux-%{kversion}
-/usr/lib/kernel/vmlinux.container
+%exclude /usr/lib/kernel/vmlinux.container
 
 %files extra
 %dir /usr/lib/kernel
