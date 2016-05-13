@@ -6,7 +6,7 @@
 
 Name:           linux-container-testing
 Version:        4.5
-Release:        4
+Release:        5
 License:        GPL-2.0
 Summary:        The Linux kernel optimized for running inside a container
 Url:            http://www.kernel.org/
