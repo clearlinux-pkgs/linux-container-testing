@@ -35,7 +35,7 @@ BuildRequires:  bison
 %define __strip /bin/true
 
 # linux-kvm patches
-Patch1:  0001-msleep.patch
+#Patch1:  0001-msleep.patch
 patch2:  0002-Skip-synchronize_rcu-on-single-CPU-systems.patch
 patch3:  0003-sysrq-Skip-synchronize_rcu-if-there-is-no-old-op.patch
 patch4:  0004-enable-no-blink-by-default.patch
