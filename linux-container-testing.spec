@@ -56,7 +56,7 @@ Patch403: 403-rdrand.patch
 Patch404: 404-reboot.patch
 Patch405: 405-no-early-modprobe.patch
 #Patch406: 406-initcalldebug.patch
-Patch407: 407-pci-guest-kernel-set-pci-net-class-bar-to-3.patch
+Patch407: 407-pci-guest-kernel-set-pci-net-class-bar-to-4.patch
 Patch408: 408-restart-info-log.patch
 
 %description
