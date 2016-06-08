@@ -49,6 +49,7 @@ patch11: 0011-probe2.patch
 patch12: 0012-No-wait-for-the-known-devices.patch
 patch13: 0013-Turn-mmput-into-an-async-function.patch
 Patch14: 0014-ptdamage.patch
+Patch15: 0015-silence-Power-down-msg.patch
 
 # plkvm patches
 Patch401: 401-plkvm.patch
@@ -87,6 +88,7 @@ Linux kernel extra file
 %patch12 -p1
 %patch13 -p1
 %patch14 -p1
+%patch15 -p1
 
 %patch401 -p1
 %patch403 -p1
