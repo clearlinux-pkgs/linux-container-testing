@@ -6,7 +6,7 @@
 
 Name:           linux-container-testing
 Version:        4.5
-Release:        9
+Release:        10
 License:        GPL-2.0
 Summary:        The Linux kernel optimized for running inside a container
 Url:            http://www.kernel.org/
@@ -52,6 +52,8 @@ Patch14: 0014-ptdamage.patch
 Patch15: 0015-silence-Power-down-msg.patch
 Patch18: 0001-crypto-testmgr-Add-a-flag-allowing-the-self-tests-to.patch
 
+Patch100: 0100-fs-9p-fix-create-unlink-getattr-idiom.patch
+
 # plkvm patches
 Patch401: 401-plkvm.patch
 Patch403: 403-rdrand.patch
@@ -92,6 +94,7 @@ Linux kernel extra file
 %patch15 -p1
 %patch18 -p1
 
+%patch100 -p1
 
 %patch401 -p1
 %patch403 -p1
