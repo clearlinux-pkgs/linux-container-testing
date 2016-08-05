@@ -13,7 +13,6 @@ Url:            http://www.kernel.org/
 Group:          kernel
 Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.5.tar.xz
 Source1:        config
-Source2:        cmdline
 
 %define kversion %{version}-%{release}.container.testing
 
@@ -66,13 +65,6 @@ Patch408: 408-restart-info-log.patch
 %description
 The Linux kernel.
 
-%package extra
-License:        GPL-2.0
-Summary:        The Linux kernel
-Group:          kernel
-
-%description extra
-Linux kernel extra file
 
 %prep
 %setup -q -n linux-4.5
@@ -133,15 +125,9 @@ InstallKernel() {
 
     Arch=x86_64
     KernelVer=%{kversion}
-    KernelDir=%{buildroot}/usr/lib/kernel
+    KernelDir=%{buildroot}/usr/share/clear-containers
 
     mkdir   -p ${KernelDir}
-    install -m 644 .config    ${KernelDir}/config-$KernelVer
-    install -m 644 System.map ${KernelDir}/System.map-$KernelVer
-    install -m 644 %{SOURCE2} ${KernelDir}/cmdline-$KernelVer
-    cp  $KernelImage ${KernelDir}/vmlinuz-$KernelVer
-    chmod 755 ${KernelDir}/vmlinuz-$KernelVer
-    ln -sf vmlinuz-$KernelVer ${KernelDir}/vmlinuz.container
 
     cp $KernelImageRaw ${KernelDir}/vmlinux-$KernelVer
     chmod 755 ${KernelDir}/vmlinux-$KernelVer
@@ -156,14 +142,6 @@ InstallKernel arch/x86/boot/bzImage vmlinux
 rm -rf %{buildroot}/usr/lib/firmware
 
 %files
-%dir /usr/lib/kernel
-/usr/lib/kernel/config-%{kversion}
-/usr/lib/kernel/vmlinuz-%{kversion}
-%exclude /usr/lib/kernel/vmlinuz.container
-/usr/lib/kernel/vmlinux-%{kversion}
-%exclude /usr/lib/kernel/vmlinux.container
-
-%files extra
-%dir /usr/lib/kernel
-/usr/lib/kernel/System.map-%{kversion}
-/usr/lib/kernel/cmdline-%{kversion}
+%dir /usr/share/clear-containers
+/usr/share/clear-containers/vmlinux-%{kversion}
+/usr/share/clear-containers/vmlinux.container
