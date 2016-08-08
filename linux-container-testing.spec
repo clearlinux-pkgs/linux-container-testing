@@ -144,4 +144,4 @@ rm -rf %{buildroot}/usr/lib/firmware
 %files
 %dir /usr/share/clear-containers
 /usr/share/clear-containers/vmlinux-%{kversion}
-/usr/share/clear-containers/vmlinux.container
+%exclude /usr/share/clear-containers/vmlinux.container
